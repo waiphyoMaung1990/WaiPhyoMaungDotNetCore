@@ -55,6 +55,8 @@
 using WaiphyomaungDotNetCore.ConsoleApp.AdoDotNetExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.DapperExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.EFCoreExamples;
+using WaiphyomaungDotNetCore.ConsoleApp.HttpClientExamples;
+using WaiphyomaungDotNetCore.ConsoleApp.RestClientExamples;
 
 //AdoDotNetExample adoDotnewexample=new AdoDotNetExample();
 //adoDotnewexample.Run();
@@ -63,5 +65,14 @@ using WaiphyomaungDotNetCore.ConsoleApp.EFCoreExamples;
 //dapperExample.Run();
 //Console.ReadKey();
 
-EFCoreExample _EFCoreExample=new EFCoreExample();
-_EFCoreExample.Run();
+//EFCoreExample _EFCoreExample=new EFCoreExample();
+//_EFCoreExample.Run();
+
+
+//HttpClientExample httpClientExample=new HttpClientExample();
+//await httpClientExample.Run();
+
+
+RestClientExample restClientExample = new RestClientExample();
+await restClientExample.Run();
+Console.ReadKey();
