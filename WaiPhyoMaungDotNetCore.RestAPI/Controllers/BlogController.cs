@@ -17,7 +17,6 @@ namespace WaiphyomaungDotnetCore.RestAPI.Controllers
         {
 
             var lst = appDbContext.Blogs.ToList();
-
             return Ok(lst);
         }
 

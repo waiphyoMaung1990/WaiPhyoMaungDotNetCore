@@ -56,6 +56,7 @@ using WaiphyomaungDotNetCore.ConsoleApp.AdoDotNetExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.DapperExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.EFCoreExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.HttpClientExamples;
+using WaiphyomaungDotNetCore.ConsoleApp.RefitExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.RestClientExamples;
 
 //AdoDotNetExample adoDotnewexample=new AdoDotNetExample();
@@ -73,6 +74,14 @@ using WaiphyomaungDotNetCore.ConsoleApp.RestClientExamples;
 //await httpClientExample.Run();
 
 
-RestClientExample restClientExample = new RestClientExample();
-await restClientExample.Run();
+//RestClientExample restClientExample = new RestClientExample();
+//await restClientExample.Run();
+//Console.ReadKey();
+
+Console.WriteLine("Please wait for api...");
 Console.ReadKey();
+
+RefitExample refitExample=new RefitExample();
+await refitExample.Run();
+
+Console.ReadLine();
