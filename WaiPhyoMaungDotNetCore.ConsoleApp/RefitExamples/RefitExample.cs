@@ -23,7 +23,7 @@ namespace WaiphyomaungDotNetCore.ConsoleApp.RefitExamples
         //[Get("/api/Blog")]
         // Task<List<BlogDataModel>> GetBlogs()
         public async Task Read()
-        {
+        { 
 
             var lst = await _blogApi.GetBlogs();
             foreach (BlogDataModel item in lst)
