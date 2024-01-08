@@ -62,10 +62,8 @@ namespace WaiphyomaungDotNetCore.AtmConsoleApp.UI
             Console.WriteLine(":                          :");
             Console.WriteLine("1. Account Balance         :");
             Console.WriteLine("2. Cash Deposit            :");
-            Console.WriteLine("3. Withdrawl               :");
-            Console.WriteLine("4. Transfer                :");
-            Console.WriteLine("5. Transactions            :");
-            Console.WriteLine("6. Logout                  :");
+            Console.WriteLine("3. Withdrawl               :");           
+            Console.WriteLine("4. Logout                  :");
         }
 
         internal static void LogOutProgress()
