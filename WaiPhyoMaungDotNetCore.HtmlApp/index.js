@@ -24,6 +24,7 @@ function CreatData() {
     lst.push(data);
     console.log({ lst });
     localStorage.setItem(tblName, JSON.stringify(lst));
+   // sessionStorage.setItem(tblName, JSON.stringify(lst));
     successMessage('Saving Successful');
     // alert("Saving Successful");
     $('#txtName').val('');

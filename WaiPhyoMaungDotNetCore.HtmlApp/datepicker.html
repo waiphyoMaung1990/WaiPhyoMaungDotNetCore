@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="plugins/Datepicker-1.0.10/datepicker.css">
+</head>
+
+<body>
+    <!-- add Css and js -->
+    <input data-toggle="datepicker">
+    <textarea data-toggle="datepicker"></textarea>
+    <!-- <div data-toggle="datepicker"></div> -->
+
+    <input type="text" id="date-picker" />
+    <!-- for trigger -->
+    <button type="button" id="test">trigger</button>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="plugins/Datepicker-1.0.10/datepicker.min.js">  </script>
+    <!-- call datepicker -->
+    <script>$('[data-toggle="datepicker"]').datepicker();
+        $('#date-picker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoHide: true,
+            trigger:'#test'
+        })
+    </script>
+
+</body>
+
+</html>
