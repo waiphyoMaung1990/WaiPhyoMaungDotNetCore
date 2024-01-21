@@ -14,6 +14,23 @@ function successMessage(message) {
         'Okay',
     );
 }
+//toast
+function toastMessage(message) {
+    //promis->then
+    return new Promise(function (myResolve, myReject) {
+        Toastify({
+            text: message, // Use the input message here
+            offset: {
+                x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+            },
+        }).showToast();
+    });
+}
+
+
+
+
 
 ///sweet
 function confirmMessage(message) {
@@ -36,26 +53,26 @@ function confirmMessage(message) {
     });
 
 
-//notiflix
-// function confirmMessage(message) {
+    //notiflix
+    // function confirmMessage(message) {
 
-//     return new Promise(function (myResolve, myReject) {
-//         Notiflix.Confirm.show(
-//             ' Confirm',
-//             message,
-//             'Yes',
-//             'No',
-//             function okCb() {
-//                 myResolve(true);
-//             },
-//             function cancelCb() {
-//                 myResolve(false);
-//             }
+    //     return new Promise(function (myResolve, myReject) {
+    //         Notiflix.Confirm.show(
+    //             ' Confirm',
+    //             message,
+    //             'Yes',
+    //             'No',
+    //             function okCb() {
+    //                 myResolve(true);
+    //             },
+    //             function cancelCb() {
+    //                 myResolve(false);
+    //             }
 
-//         );
+    //         );
 
-//     });
-// }
+    //     });
+    // }
     // "Consuming Code" (Must wait for a fulfilled Promise)
     myPromise.then(
         function (value) { /* code if successful */ },
