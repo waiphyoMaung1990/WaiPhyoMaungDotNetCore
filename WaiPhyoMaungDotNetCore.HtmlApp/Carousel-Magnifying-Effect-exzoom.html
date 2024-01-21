@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="plugins/Carousel-Magnifying-Effect-exzoom/jquery.exzoom.css" />
+   <link rel="stylesheet" href="Carousel-Magnifying-Effect-exzoomStyle.css">
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- for exzoom -->
+    <script src="plugins/Carousel-Magnifying-Effect-exzoom/jquery.exzoom.js"></script>
+
+    <div class="exzoom" id="exzoom">
+        <!-- Images -->
+        <div class="exzoom_img_box">
+            <ul class='exzoom_img_ul'>
+                <li><img src="plugins/Carousel-Magnifying-Effect-exzoom/1.jpg" /></li>
+                <li><img src="plugins/Carousel-Magnifying-Effect-exzoom/2.jpg" /></li>
+                <li><img src="plugins/Carousel-Magnifying-Effect-exzoom/3.jpg" /></li>
+                <li><img src="plugins/Carousel-Magnifying-Effect-exzoom/4.jpg" /></li>
+                <li><img src="plugins/Carousel-Magnifying-Effect-exzoom/5.jpg" /></li>
+                <!-- ... Add more images as needed -->
+            </ul>
+        </div>
+        <!-- <a href="https://www.jqueryscript.net/tags.php?/Thumbnail/">Thumbnail</a> Nav-->
+        <div class="exzoom_nav"></div>
+      
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#exzoom").exzoom({
+                "autoPlay":false,
+
+            });
+        });
+    </script>
+</body>
+
+</html>
