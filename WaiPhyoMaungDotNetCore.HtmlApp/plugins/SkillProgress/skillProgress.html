@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css"/>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Javascript -->
+    <script src="skillProgress.min.js"></script>
+ 
+
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <div class="chart">
+        <h6 class="chart_bar">HTML/CSS</h6>
+        <h6 class="label">100%</h6><br>
+        <h6 class="chart_bar">JAVASCRIPT/JQUERY</h6>
+        <h6 class="label">80%</h6><br>
+        <h6 class="chart_bar">PHP</h6>
+        <h6 class="label">50%</h6><br>
+        <h6 class="chart_bar">C++</h6>
+        <h6 class="label">80%</h6><br>
+        <h6 class="chart_bar">C#</h6>
+        <h6 class="label">80%</h6><br>
+        <h6 class="chart_bar">C</h6>
+        <h6 class="label">60%</h6><br>
+        <h6 class="chart_bar">SQL</h6>
+        <h6 class="label">80%</h6><br>
+        <h6 class="chart_bar">PYTHON</h6>
+        <h6 class="label">80%</h6><br>
+        <h6 class="chart_bar">SUITE ADOBE</h6>
+        <h6 class="label">30%</h6><br>
+    </div>
+    <script>
+        $(document).ready(function () {
+            SkillProgress('chart', 'chart_bar', 'label', 0, 1000);
+        });
+    </script>
+    
+</body>
+
+</html>

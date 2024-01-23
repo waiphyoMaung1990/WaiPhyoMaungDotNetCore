@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/pdfviewer.jquery.css" />
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script src="js/pdfviewer.jquery.js"></script>
+
+
+    <div id="pdfviewer"></div>
+    <script>
+        if (typeof pdfjsLib === 'undefined') {
+            console.error('pdfjsLib is not defined. Make sure pdf.js is loaded before pdfviewer.jquery.js.');
+            return;
+        }
+
+        $('#pdfviewer').pdfViewer('assets/1.pdf', {
+            width: 900,
+            height: 600,
+        });
+
+    </script>
+</body>
+
+</html>
