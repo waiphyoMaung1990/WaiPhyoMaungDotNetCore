@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiPhyoMaungDotNetCore.MvcApp", "WaiPhyoMaungDotNetCore.MvcApp.csproj", "{66DCC3E5-DE6D-49F3-BE11-BE7A66C50F5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66DCC3E5-DE6D-49F3-BE11-BE7A66C50F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66DCC3E5-DE6D-49F3-BE11-BE7A66C50F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66DCC3E5-DE6D-49F3-BE11-BE7A66C50F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66DCC3E5-DE6D-49F3-BE11-BE7A66C50F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {99DAC5F4-261E-401F-8BB6-43752A48108F}
+	EndGlobalSection
+EndGlobal
