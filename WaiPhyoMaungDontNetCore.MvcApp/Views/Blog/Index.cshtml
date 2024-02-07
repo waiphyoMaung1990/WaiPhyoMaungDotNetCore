@@ -4,11 +4,12 @@
     ViewData["Title"] = "Blog";
     int count = 0;
 }
-
+<a href="/Blog/Create" class="btn btn-success">New</a>
 <table class="table">
     <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Action</th>
             <th scope="col">Title</th>
             <th scope="col">Author</th>
             <th scope="col">Content</th>
@@ -18,8 +19,15 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    <a href="/Blog/Edit/@item.Blog_Id" class="btn btn-warning">Edit</a>
+                    <a href="/Blog/Delete/@item.Blog_Id" class="btn btn-danger">Delete</a>
+                    @* if other variable is used in program.cs [   pattern: "{controller=Home}/{action=Index}/{id?}");] delare in above code
+                <a href="/Blog/Delete?blogId/@item.Blog_Id" class="btn btn-danger">Delete</a>
+                *@
+                </td>
                 <th scope="row">@(++count)</th>
-                <td >@item.Blog_Title</td>
+                <td>@item.Blog_Title</td>
                 <td>@item.Blog_Author</td>
                 <td>@item.Blog_Content</td>
             </tr>

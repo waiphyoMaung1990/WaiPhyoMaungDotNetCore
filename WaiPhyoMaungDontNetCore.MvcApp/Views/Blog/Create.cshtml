@@ -1,0 +1,16 @@
+﻿<form method="post" asp-action="Save" asp-controller="Blog">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <input type="text" class="form-control" name="Blog_Title">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Author</label>
+        <input type="text" class="form-control" name="Blog_Author">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Content</label>
+        <input type="text" class="form-control" name="Blog_Content">
+    </div>
+    <a href="/Blog" class="btn btn-dark">Cancel</a>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
