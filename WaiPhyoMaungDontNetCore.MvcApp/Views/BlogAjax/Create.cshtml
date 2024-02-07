@@ -1,0 +1,52 @@
+﻿<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Title</label>
+    <input type="text" class="form-control" id="Blog_Title" name="Blog_Title">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Author</label>
+    <input type="text" class="form-control" id="Blog_Author" name="Blog_Author">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Content</label>
+    <input type="text" class="form-control" id="Blog_Content" name="Blog_Content">
+</div>
+<a href="/Blog" class="btn btn-dark">Cancel</a>
+<button type="button" id="btnSave" class="btn btn-success">Save</button>
+
+@section scripts {
+    <script>
+        $('#btnSave').click(function (e) {
+            // Move these lines inside the click event handler
+            let title = $('#Blog_Title').val();
+            let author = $('#Blog_Author').val();
+            let content = $('#Blog_Content').val();
+
+            let _requestModel = {
+                Blog_Title: title,
+                Blog_Author: author,
+                Blog_Content: content,
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '/BlogAjax/Save',
+                data: { requestModel: _requestModel },
+                dataType: "json",
+                // contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log({ data });
+                    alert(data.message);
+                    location.href="/BlogAjax"
+                },
+                error: function (response) {
+                    // Corrected the syntax error here
+                    var r = jQuery.parseJSON(response.responseText);
+                    console.log("Message: " + r.Message);
+                    console.log("StackTrace: " + r.StackTrace);
+                    console.log("ExceptionType: " + r.ExceptionType);
+                }
+
+            });
+        })
+    </script>
+}
