@@ -55,17 +55,14 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
                 return RedirectToAction("Index");
             }
             return View(item);
-        }
-
-
-      
+        }      
 
         [HttpPost]
         public async Task<IActionResult> Update(int id, BlogDataModel requestModel)
         {
             var item = await _appdbcontext.Blogs.FirstOrDefaultAsync(x => x.Blog_Id == id);
 
-            if (item == null)
+            if (item is null)
             {
                 return RedirectToAction("Index");
             }
@@ -79,7 +76,6 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
             return RedirectToAction("Index");
         }
 
-        // ... (existing code)
 
     }
 }

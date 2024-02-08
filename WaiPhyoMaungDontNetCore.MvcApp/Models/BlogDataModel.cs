@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WaiPhyoMaungDontNetCore.MvcApp.Models
 {
     [Table("Tbl_Blog")]
-    //if column name is not same we need to write as this style [Column(BlogId)]
     public class BlogDataModel
     {
         [Key]
@@ -18,4 +12,29 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Models
         public string? Blog_Author { get; set; }
         public string? Blog_Content { get; set; }
     }
+
+    public class PieChartModel
+    {
+        public List<int> Series { get; set; }
+        public List<string> Labels { get; set; }
+    }
+
+    public class BubbleChartModel
+    {
+        public List<BubbleSeries> Series { get; set; }
+    }
+
+    public class BubbleSeries
+    {
+        public string Name { get; set; }
+        public List<BubbleData> Data { get; set; }
+    }
+
+    public class BubbleData
+    {
+        public DateTime X { get; set; }
+        public int Y { get; set; }
+        public int Z { get; set; }
+    }
+
 }
