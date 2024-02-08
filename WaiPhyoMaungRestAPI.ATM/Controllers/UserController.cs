@@ -45,7 +45,6 @@ namespace WaiPhyoMaungRestAPI.ATM.Controllers
 
 		#region Deposit
 
-
 		[HttpPost("Deposit/{userId}")]
 		public IActionResult Deposit(DepositRequestModel requestModel)
 		{
