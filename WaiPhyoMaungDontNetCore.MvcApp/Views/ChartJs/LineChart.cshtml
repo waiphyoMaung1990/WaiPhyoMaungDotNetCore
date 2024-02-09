@@ -1,0 +1,51 @@
+﻿@model ChartJsModel.LineChart
+@{
+    ViewData["Title"] = "Line Chart";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <canvas id="myLineChart"></canvas>
+</div>
+
+@section scripts {
+  
+    <script>
+        const ctx = document.getElementById('myLineChart');
+        let label = @Html.Raw(Json.Serialize(Model.Label));
+        let borderColor = @Html.Raw(Json.Serialize(Model.BorderColor));
+        let data = @Html.Raw(Json.Serialize(Model.Data));
+        let labels = [];
+        for (let i = 0; i < data.length; i++) {
+            labels.push(i + 1);
+        }
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels:labels,
+                datasets: [{
+                    label: label,
+                    data: data,
+                    fill: false,
+                    borderColor: borderColor,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}
+      
+
+
+
+
+}

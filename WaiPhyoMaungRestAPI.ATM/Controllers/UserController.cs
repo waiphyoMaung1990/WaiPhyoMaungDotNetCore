@@ -86,7 +86,7 @@ namespace WaiPhyoMaungRestAPI.ATM.Controllers
         #endregion
         #region Deposit
 
-        [HttpPost]
+        [HttpPost("Deposit/{userId}/{amount}")]
         public IActionResult Deposit(DepositRequestModel _depositrequestmodel)
         {
             var user = _appDbContext.User.FirstOrDefault(x => x.UserId == _depositrequestmodel.UserId);
