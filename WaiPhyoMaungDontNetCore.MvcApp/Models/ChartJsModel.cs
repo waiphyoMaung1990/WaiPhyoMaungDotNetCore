@@ -25,5 +25,6 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Models
             public List<int> Data { get; set; }
         }
 
+        
     }
 }

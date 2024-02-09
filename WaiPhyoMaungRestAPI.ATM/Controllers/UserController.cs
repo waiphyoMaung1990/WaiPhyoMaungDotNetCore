@@ -55,7 +55,9 @@ namespace WaiPhyoMaungRestAPI.ATM.Controllers
 
         #region CheckBalance
 
-        [HttpGet]
+        [HttpGet("{userId}")]
+        //if only HttpGet() => userId=13D5E9F5-DE5F-4661-8957-8D069F34587E
+        //  [HttpGet("{userId}")]=>/13D5E9F5-DE5F-4661-8957-8D069F34587E
         public IActionResult CheckBalance(string userId)
         {
             var user = _appDbContext.User.FirstOrDefault(x => x.UserId == userId);
@@ -86,8 +88,9 @@ namespace WaiPhyoMaungRestAPI.ATM.Controllers
         #endregion
         #region Deposit
 
-        [HttpPost("Deposit/{userId}/{amount}")]
-        public IActionResult Deposit(DepositRequestModel _depositrequestmodel)
+        [HttpPost("Deposit")]
+        //https://localhost:7082/api/User/Deposit
+        public IActionResult Deposit([FromBody] DepositRequestModel _depositrequestmodel)
         {
             var user = _appDbContext.User.FirstOrDefault(x => x.UserId == _depositrequestmodel.UserId);
 
