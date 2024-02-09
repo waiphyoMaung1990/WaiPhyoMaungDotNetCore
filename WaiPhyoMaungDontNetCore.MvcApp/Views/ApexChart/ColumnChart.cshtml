@@ -1,0 +1,72 @@
+﻿@model ColumnChartModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Column Chart</title>
+    <link href="~/assets/styles.css" rel="stylesheet" />
+
+    <style>
+        #chart {
+            max-width: 650px;
+            margin: 35px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart"></div>
+    @section scripts
+    {
+        <script>
+            var options = {
+                series: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Series)),
+                chart: {
+                    type: 'bar',
+                    height: 350,
+                    stacked: true,
+                },
+                stroke: {
+                    width: 1,
+                    colors: ['#fff']
+                },
+                dataLabels: {
+                    formatter: function (val) {
+                        return (val / 1000) + 'K';
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false
+                    }
+                },
+                xaxis: {
+                    categories: ['Online advertising', 'Sales Training', 'Print advertising', 'Catalogs', 'Meetings', 'Public relations']
+                },
+                fill: {
+                    opacity: 1
+                },
+                colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
+                yaxis: {
+                    labels: {
+                        formatter: function (val) {
+                            return (val / 1000) + 'K';
+                        }
+                    }
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'left'
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+        </script>
+    }
+
+</body>
+</html>

@@ -1,116 +1,148 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using WaiPhyoMaungRestAPI.ATM.Models;
 
 namespace WaiPhyoMaungRestAPI.ATM.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class UserController : ControllerBase
-	{
-		AppDbContext _appDbContext = new AppDbContext();
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserController : ControllerBase
+    {
+        private readonly AppDbContext _appDbContext;
 
-		#region CreateUser
+        public UserController(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
 
-		[HttpPost]
-		public IActionResult CreateUser(UserModel user)
-		{
-			_appDbContext.User.Add(user);
-			var result = _appDbContext.SaveChanges();
-			var message = result > 0 ? "Saving Successful." : "Saving Failed";
-			return Ok(message);
-		}
+        #region CreateUser
 
-		#endregion
+        [HttpPost]
+        public IActionResult CreateUser(UserRequestModel _requestuser)
+        {
+            try
+            {
+                _requestuser.UserId = Guid.NewGuid().ToString();
+                _appDbContext.User.Add(_requestuser);
+                var result = _appDbContext.SaveChanges();
 
-		#region CheckBalance
+                if (result > 0)
+                {
+                    var responseModel = new UserResponseModel
+                    {
+                        UserId = _requestuser.UserId,
+                        Message = "Account has been created.",
+                    };
 
-		[HttpGet("CheckBalance/{userId}")]
-		public IActionResult CheckBalance(int userId)
-		{
-			var user = _appDbContext.User.FirstOrDefault(x => x.UserId == userId);
+                    return Ok(responseModel);
+                }
+                else
+                {
+                    return BadRequest("Account Creating Failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception for troubleshooting
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
 
-			if (user == null)
-			{
-				return NotFound("User not found.");
-			}
+        #endregion
 
-			var totalBalance = user.Balance;
-			return Ok($"Total balance for user {userId}: {totalBalance}");
-		}
+        #region CheckBalance
 
-		#endregion
+        [HttpGet]
+        public IActionResult CheckBalance(string userId)
+        {
+            var user = _appDbContext.User.FirstOrDefault(x => x.UserId == userId);
 
-		#region Deposit
+            if (user is null)
+            {
+                return NotFound("User not found.");
+            }
 
-		[HttpPost("Deposit/{userId}")]
-		public IActionResult Deposit(DepositRequestModel requestModel)
-		{
-			var user = _appDbContext.User.FirstOrDefault(x => x.UserId == requestModel.UserId);
+            try
+            {
+                var checkBalanceResponseModel = new CheckBalanceResponseModel
+                {
+                    IsSuccess = true,
+                    Balance = user.Balance,
+                    Message = "Balance retrieved successfully.",
+                };
 
-			if (user == null)
-			{
-				return NotFound("User not found.");
-			}
+                return Ok(checkBalanceResponseModel);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception for troubleshooting
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
 
-			// Assuming the user has a default account for simplicity
-			user.Balance += requestModel.Amount;
+        #endregion
+        #region Deposit
 
-			var result = _appDbContext.SaveChanges();
-			var message = result > 0 ? $"Deposit Successful. Your current balance is {user.Balance}" : "Deposit Failed";
-			DepositResponseModel model = new DepositResponseModel()
-			{
-				IsSuccess = result > 0,
-				Message = message,
-				Balance = user.Balance
-			};
-			return Ok(model);
-		}
+        [HttpPost]
+        public IActionResult Deposit(DepositRequestModel _depositrequestmodel)
+        {
+            var user = _appDbContext.User.FirstOrDefault(x => x.UserId == _depositrequestmodel.UserId);
 
-		#endregion
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
 
-		#region Withdraw
+            user.Balance += _depositrequestmodel.Amount;
 
-		[HttpPost("Withdraw/{userId}")]
-		public IActionResult Withdraw(int userId, int amount)
-		{
-			var user = _appDbContext.User.FirstOrDefault(x => x.UserId == userId);
+            var result = _appDbContext.SaveChanges();
+            var message = result > 0 ? $"Deposit Successful. Your current balance is {user.Balance}" : "Deposit Failed";
+            var model = new DepositResponseModel
+            {
+                IsSuccess = result > 0,
+                Message = message,
+                Balance = user.Balance
+            };
+            return Ok(model);
+        }
 
-			if (user == null)
-			{
-				return NotFound("User not found.");
-			}
+        #endregion
 
-			if (user.Balance is 0 || user.Balance < amount)
-			{
-				return BadRequest("Insufficient funds.");
-			}
+        #region Withdraw
 
-			// Assuming the user has a default account for simplicity
-			user.Balance -= amount;
+        [HttpPost("Withdraw/{userId}/{amount}")]
+        public IActionResult Withdraw(WithdrawRequestModel _withdrawRequestModel)
+        {
+            var user = _appDbContext.User.FirstOrDefault(x => x.UserId == _withdrawRequestModel.UserId);
 
-			var result = _appDbContext.SaveChanges();
-			var message = result > 0 ? $"Withdrawal Successful. Your current balance is {user.Balance}" : "Withdrawal Failed";
-			return Ok(message);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
 
-			//{F53565EB-73C5-4E17-82D4-4C6435B9886D}
-		}
+            if (user.Balance is 0 || user.Balance < _withdrawRequestModel.Amount)
+            {
+                return BadRequest("Insufficient funds.");
+            }
 
-		#endregion
-	}
+            // Assuming the user has a default account for simplicity
+            user.Balance -= _withdrawRequestModel.Amount;
 
-	public class DepositResponseModel
-	{
-		public bool IsSuccess { get; set; }
-		public string Message { get; set; }
-		public decimal Balance { get; set; }
-	}
+            var result = _appDbContext.SaveChanges();
+            var message = result > 0 ? $"Withdrawal Successful. Your current balance is {user.Balance}" : "Withdrawal Failed";
+            var model = new WithdrawResponseModel
+            {
+                IsSuccess = result > 0,
+                Message = message,
+                Balance = user.Balance
+            };
+            return Ok(model);
+        }
 
-	public class DepositRequestModel
-	{
-		public int UserId { get; set; } 
-		public int Amount { get; set; } 
-	}
+        #endregion
+    }
 }
+
