@@ -1,0 +1,27 @@
+﻿<div id="chartContainer" style="height: 300px; width: 100%;"></div> 
+@section scripts
+{
+    <script>
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "@Model.Title"
+                },
+                data: [{
+                    type: "pie",
+                    startAngle: 240,
+                    yValueFormatString: "##0.00\"%\"",
+                    indexLabel: "{label} {y}",
+                    dataPoints: [
+        @for (int i = 0; i < Model.DataPoints.Length; i++)
+        {
+            @:{ y: @Model.DataPoints[i], label: "@Model.Labels[i]" },
+        }
+                            ]
+                }]
+            });
+            chart.render();
+        }
+    </script>
+}

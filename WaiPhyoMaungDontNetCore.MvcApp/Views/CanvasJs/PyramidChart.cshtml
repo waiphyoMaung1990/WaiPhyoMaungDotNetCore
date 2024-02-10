@@ -1,0 +1,33 @@
+﻿@section scripts {
+    <script>
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                exportEnabled: true,
+                theme: "light1",
+                title: {
+                    text: "@Model.Title"
+                },
+                data: [{
+                    type: "pyramid",
+                    yValueFormatString: "#\"%\"",
+                    indexLabelFontColor: "black",
+                    indexLabelFontSize: 16,
+                    indexLabel: "{label} - {y}",
+                    dataPoints: [
+        @foreach (var dataPoint in Model.DataPoints)
+        {
+            <text>{ y: @dataPoint.Y, label: "@dataPoint.Label" }, </text>
+        }
+                            ]
+                }]
+            });
+            chart.render();
+        }
+    </script>
+}
+
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+}
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
