@@ -13,9 +13,9 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
         {
             var model = new HighChartModel.PieChartModel()
             {
-                Title = "Egg Yolk Composition",
-                Subtitle = "Source:<a href='https://www.mdpi.com/2072-6643/11/3/684/htm' target='_default'>MDPI</a>",
-                Categories = new string[] { "Water", "Fat", "Carbohydrates", "Protein", "Ash" },
+                Title  = "Egg Yolk Composition",
+                Subtitle  = "Source:<a href='https://www.mdpi.com/2072-6643/11/3/684/htm' target='_default'>MDPI</a>",
+                Categories  = new string[] { "Water", "Fat", "Carbohydrates", "Protein", "Ash" },
                 Data = new double[] { 55.02, 26.71, 1.09, 15.5, 1.68 }
             };
 
