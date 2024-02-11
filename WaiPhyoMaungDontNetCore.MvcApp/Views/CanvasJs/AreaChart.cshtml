@@ -2,16 +2,15 @@
     <script>
         window.onload = function () {
             var chartData = @Html.Raw(JsonConvert.SerializeObject(Model.AreaDataPoint));
-            var dataPoints = [];
-            for (var i = 0; i < chartData.length; i++) {
-                dataPoints.push({
-                    x: chartData[i].X, 
-                    y: chartData[i].Y,
-                    label: chartData[i].Label,
-                    indexLabel: chartData[i].IndexLabel,
-                    markerColor: chartData[i].MarkerColor
-                });
-            }
+
+            var dataPoints = chartData.map(item => ({
+                x: new Date(item.X),
+                y: item.Y,
+                label: item.Label,
+                indexLabel: item.IndexLabel,
+                markerColor: item.MarkerColor
+            }));
+
             var chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
                 title: {
@@ -36,9 +35,11 @@
                     dataPoints: dataPoints
                 }]
             });
+
             chart.render();
             console.log(dataPoints);
         }
     </script>
 }
+
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>

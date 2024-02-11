@@ -42,6 +42,23 @@
         }
 
         #endregion
+        #region StackedBarChart
+        public class StackedBarChart
+        {
+            public class DataPoint
+            {
+                public DateTime X { get; set; }
+                public int Y { get; set; }
+            }
+            public List<DataPoint> Meals { get; set; }
+            public List<DataPoint> Snacks { get; set; }
+            public List<DataPoint> Drinks { get; set; }
+            public List<DataPoint> Dessert { get; set; }
+            public List<DataPoint> Takeaway { get; set; }
+        }
+        #endregion
+
+
 
     }
 }

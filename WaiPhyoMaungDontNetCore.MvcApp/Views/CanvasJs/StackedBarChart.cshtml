@@ -1,0 +1,91 @@
+﻿@section scripts
+{
+    <script>
+        window.onload = function () {
+           
+            const transformData = function (dataPoints) {
+                return dataPoints.map(dp => {
+                    return {
+                        x: new Date(dp.X), 
+                        y: dp.Y
+                    };
+                });
+            };
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "Evening Sales in a Restaurant"
+                },
+                axisX: {
+                    valueFormatString: "DDD"
+                },
+                axisY: {
+                    prefix: "$"
+                },
+                toolTip: {
+                    shared: true
+                },
+                legend: {
+                    cursor: "pointer",
+                    itemclick: toggleDataSeries
+                },
+                data: [
+                    {
+                        type: "stackedBar",
+                        name: "Meals",
+                        showInLegend: true,
+                        xValueFormatString: "DD, MMM",
+                        yValueFormatString: "$#,##0",
+                        dataPoints: transformData(@Html.Raw(JsonConvert.SerializeObject(Model.Meals)))
+                    },
+                    {
+                        type: "stackedBar",
+                        name: "Snacks",
+                        showInLegend: true,
+                        xValueFormatString: "DD, MMM",
+                        yValueFormatString: "$#,##0",
+                        dataPoints: transformData(@Html.Raw(JsonConvert.SerializeObject(Model.Snacks)))
+                    },
+                    {
+                        type: "stackedBar",
+                        name: "Drinks",
+                        showInLegend: true,
+                        xValueFormatString: "DD, MMM",
+                        yValueFormatString: "$#,##0",
+                        dataPoints: transformData(@Html.Raw(JsonConvert.SerializeObject(Model.Drinks)))
+                    },
+                    {
+                        type: "stackedBar",
+                        name: "Dessert",
+                        showInLegend: true,
+                        xValueFormatString: "DD, MMM",
+                        yValueFormatString: "$#,##0",
+                        dataPoints: transformData(@Html.Raw(JsonConvert.SerializeObject(Model.Dessert)))
+                    },
+                    {
+                        type: "stackedBar",
+                        name: "Takeaway",
+                        showInLegend: true,
+                        xValueFormatString: "DD, MMM",
+                        yValueFormatString: "$#,##0",
+                        dataPoints: transformData(@Html.Raw(JsonConvert.SerializeObject(Model.Takeaway)))
+                    },
+                ]
+            });
+
+            chart.render();
+
+            function toggleDataSeries(e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                chart.render();
+            }
+        };
+    </script>
+}
+
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>

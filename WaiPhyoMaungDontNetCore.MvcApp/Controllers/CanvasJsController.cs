@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WaiPhyoMaungDontNetCore.MvcApp.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static WaiPhyoMaungDontNetCore.MvcApp.Models.CanvasJsModel;
 
 namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
@@ -60,5 +61,65 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
             return View(model);
         }
         #endregion
+
+        public IActionResult StackedBarChart()
+        {
+            var model = new StackedBarChart
+            {
+                Meals = new List<StackedBarChart.DataPoint>
+        {
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 30), Y = 48 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 31), Y = 45 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 1), Y = 41 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 2), Y = 55 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 3), Y = 80 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 4), Y = 85 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 5), Y = 83 }
+        },
+                Snacks = new List<StackedBarChart.DataPoint>
+        {
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 30), Y = 61 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 31), Y = 55 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 1), Y = 61 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 2), Y = 75 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 3), Y = 80 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 4), Y = 85 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 5), Y = 105 }
+        },
+                Drinks = new List<StackedBarChart.DataPoint>
+        {
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 30), Y = 52 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 31), Y = 55 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 1), Y = 20 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 2), Y = 35 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 3), Y = 30 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 4), Y = 45 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 5), Y = 25 }
+        },
+                Dessert = new List<StackedBarChart.DataPoint>
+        {
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 30), Y = 61 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 31), Y = 55 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 1), Y = 61 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 2), Y = 75 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 3), Y = 80 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 4), Y = 85 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 5), Y = 105 }
+        },
+                Takeaway = new List<StackedBarChart.DataPoint>
+        {
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 30), Y = 52 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 31), Y = 55 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 1), Y = 20 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 2), Y = 35 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 3), Y = 30 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 4), Y = 45 },
+            new StackedBarChart.DataPoint { X = new DateTime(2017, 1, 5), Y = 25 }
+        }
+            };
+
+            return View(model);
+        }
     }
+
 }
