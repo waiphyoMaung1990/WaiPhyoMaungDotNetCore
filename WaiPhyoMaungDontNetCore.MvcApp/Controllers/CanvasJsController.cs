@@ -37,5 +37,28 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
 
             return View(model);
         }
+        #region AreaChart
+        public IActionResult AreaChart()
+        {
+            var model = new CanvasJsModel.AreaChart()
+            {
+                Title = "Number of iPhones Sold in Different Quarters",
+                AreaDataPoint = new List<AreDataPoint>
+        {
+            new AreDataPoint { X = new DateOnly(2015, 02, 1), Y = 74.4, Label = "Q1-2015" },
+            new AreDataPoint { X = new DateOnly(2015, 05, 1), Y = 61.1, Label = "Q2-2015" },
+            new AreDataPoint { X = new DateOnly(2015, 08, 1), Y = 47.0, Label = "Q3-2015" },
+            new AreDataPoint { X = new DateOnly(2015, 11, 1), Y = 48.0, Label = "Q4-2015" },
+            new AreDataPoint { X = new DateOnly(2016, 02, 1), Y = 74.8, Label = "Q1-2016" },
+            new AreDataPoint { X = new DateOnly(2016, 05, 1), Y = 51.1, Label = "Q2-2016" },
+            new AreDataPoint { X = new DateOnly(2016, 08, 1), Y = 40.4, Label = "Q3-2016" },
+            new AreDataPoint { X = new DateOnly(2016, 11, 1), Y = 45.5, Label = "Q4-2016" },
+            new AreDataPoint { X = new DateOnly(2017, 02, 1), Y = 78.3, Label = "Q1-2017", IndexLabel = "Highest", MarkerColor = "red" }
+        }
+            };
+
+            return View(model);
+        }
+        #endregion
     }
 }
