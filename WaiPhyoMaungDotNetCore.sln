@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaiphyomaungDotNetCore.AtmC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaiPhyoMaungDontNetCore.MvcApp", "WaiPhyoMaungDontNetCore.MvcApp\WaiPhyoMaungDontNetCore.MvcApp.csproj", "{EFB5050E-3CB5-4E90-9E8F-534CB7EF6404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiPhyoMaungRestAPI.ATM", "WaiPhyoMaungRestAPI.ATM\WaiPhyoMaungRestAPI.ATM.csproj", "{7D918B36-5627-4CCE-9304-D88AFA594ED1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaiPhyoMaungRestAPI.ATM", "WaiPhyoMaungRestAPI.ATM\WaiPhyoMaungRestAPI.ATM.csproj", "{7D918B36-5627-4CCE-9304-D88AFA594ED1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiPhyoMaungDotNetCore.ChatAppUsingSignalR", "WaiPhyoMaungDotNetCore.ChatAppUsingSignalR\WaiPhyoMaungDotNetCore.ChatAppUsingSignalR.csproj", "{6F4721EE-C402-42E6-A149-D75DCA4E99B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{7D918B36-5627-4CCE-9304-D88AFA594ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D918B36-5627-4CCE-9304-D88AFA594ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D918B36-5627-4CCE-9304-D88AFA594ED1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F4721EE-C402-42E6-A149-D75DCA4E99B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F4721EE-C402-42E6-A149-D75DCA4E99B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F4721EE-C402-42E6-A149-D75DCA4E99B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F4721EE-C402-42E6-A149-D75DCA4E99B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

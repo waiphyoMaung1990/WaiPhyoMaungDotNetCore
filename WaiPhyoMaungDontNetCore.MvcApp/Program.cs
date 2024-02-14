@@ -6,12 +6,24 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+#region for DB
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     string connectionString = builder.Configuration.GetConnectionString("DbConnection")!;
     opt.UseSqlServer(connectionString);
 });
-
+#endregion
+#region for HttpClient
+//builder.Services.AddScoped<HttpClient>();
+builder.Services.AddScoped(IServiceProvider =>
+{
+    HttpClient httpClient = new HttpClient()
+    {
+        BaseAddress = new Uri(builder.Configuration.GetSection(key: "ApiUrl").Value!)
+    };
+    return httpClient;
+});
+#endregion
 
 //builder.Services.AddDbContext<AppDbContext>(optionsAction: opt=:DbContextOptionsBuilder =>
 //{

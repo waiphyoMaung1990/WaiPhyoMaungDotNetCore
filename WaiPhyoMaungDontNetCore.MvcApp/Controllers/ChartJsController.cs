@@ -35,7 +35,7 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
 
         #endregion
 
-        #region LineChart
+        #region Doughnut
         public IActionResult Doughnut()
         {
             var model = new ChartJsModel.Doughnut()
@@ -49,6 +49,11 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
         }
         #endregion
 
-       
+        #region
+        public IActionResult RadarChart()
+        {
+            return View();
+        }
+        #endregion
     }
 }

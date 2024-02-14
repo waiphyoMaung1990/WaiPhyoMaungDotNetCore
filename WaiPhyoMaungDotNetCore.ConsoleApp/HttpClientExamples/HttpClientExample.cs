@@ -14,13 +14,13 @@ namespace WaiphyomaungDotNetCore.ConsoleApp.HttpClientExamples
 
         public async Task Run()
         {
-            //await ReadAsync();
+            await ReadAsync();
             //await EditAsync(5);
             ////await EditAsync(200);
             //await CreateAync("http Title", "http Author", "http content");
             //  await UpdateAsync(6, "httpUpdated title", "httpUpdated author", "httpUpdated content");
        //     await PatchAsync(7, "httpPatch title", "httpPatch author");
-            await DeleteAsync(2);
+            //await DeleteAsync(2);
             //await ReadAsync();
         }
         public async Task ReadAsync()
