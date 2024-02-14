@@ -15,12 +15,14 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
             _httpClient = httpClient;
         }
 
-        #region Index
+        #region Get
         public async Task<IActionResult> Index()
         {
             try
             {
                 List<BlogDataModel> lst = new();
+                //From RestAPI 
+                //Blog is controller name of RestApi
                 HttpResponseMessage response = await _httpClient.GetAsync("/api/Blog");
                 if (response.IsSuccessStatusCode)
                 {
@@ -52,7 +54,7 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
             {
                 string json = JsonConvert.SerializeObject(model);
                 HttpContent httpContent = new StringContent(json, Encoding.UTF8, Application.Json);
-                HttpResponseMessage response = await _httpClient.PostAsync("/api/BlogDapper", httpContent);
+                HttpResponseMessage response = await _httpClient.PostAsync("/api/Blog", httpContent);
                 if (response.IsSuccessStatusCode)
                 {
                     string message = await response.Content.ReadAsStringAsync();
@@ -74,7 +76,7 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
             try
             {
                 var item = new BlogDataModel();
-                HttpResponseMessage response = await _httpClient.GetAsync($"/api/BlogDapper/{id}");
+                HttpResponseMessage response = await _httpClient.GetAsync($"/api/Blog/{id}");
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonStr = await response.Content.ReadAsStringAsync();
@@ -97,7 +99,7 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
             {
                 string json = JsonConvert.SerializeObject(model);
                 HttpContent httpContent = new StringContent(json, Encoding.UTF8, Application.Json);
-                HttpResponseMessage response = await _httpClient.PutAsync($"/api/BlogDapper/{id}", httpContent);
+                HttpResponseMessage response = await _httpClient.PutAsync($"/api/Blog/{id}", httpContent);
                 if (response.IsSuccessStatusCode)
                 {
                     string message = await response.Content.ReadAsStringAsync();
@@ -118,7 +120,7 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
         {
             try
             {
-                HttpResponseMessage response = await _httpClient.DeleteAsync($"/api/BlogDapper/{id}");
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"/api/Blog/{id}");
 
                 if (response.IsSuccessStatusCode)
                 {
