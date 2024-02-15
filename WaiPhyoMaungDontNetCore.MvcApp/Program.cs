@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Refit;
 using RestSharp;
 using WaiPhyoMaungDontNetCore.MvcApp;
 
@@ -36,11 +37,13 @@ builder.Services.AddScoped(IServiceProvider =>
 });
 #endregion
 
-//builder.Services.AddDbContext<AppDbContext>(optionsAction: opt=:DbContextOptionsBuilder =>
-//{
-//    OptionsBuilderConfigurationExtensions.
-//}
+#region refit
+builder.Services
+    .AddRefitClient<IBlogApi>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration.GetSection("ApiUrl").Value!));
+
 var app = builder.Build();
+#endregion
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -59,6 +62,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Blog}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
