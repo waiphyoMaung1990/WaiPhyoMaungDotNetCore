@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using RestSharp;
 using WaiPhyoMaungDontNetCore.MvcApp;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseSqlServer(connectionString);
 });
 #endregion
+
+
 #region for HttpClient
 //builder.Services.AddScoped<HttpClient>();
 builder.Services.AddScoped(IServiceProvider =>
@@ -22,6 +25,14 @@ builder.Services.AddScoped(IServiceProvider =>
         BaseAddress = new Uri(builder.Configuration.GetSection(key: "ApiUrl").Value!)
     };
     return httpClient;
+});
+#endregion
+
+#region for RestClient
+builder.Services.AddScoped(IServiceProvider =>
+{
+    RestClient restClient = new RestClient(builder.Configuration.GetSection(key: "ApiUrl").Value!);   
+    return restClient;
 });
 #endregion
 

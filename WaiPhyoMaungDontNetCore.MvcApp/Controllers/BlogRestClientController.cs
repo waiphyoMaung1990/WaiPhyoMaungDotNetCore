@@ -1,18 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RestSharp;
 using System.Text;
 using WaiPhyoMaungDontNetCore.MvcApp.Models;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
 {
-    public class BlogHttpClientController : Controller
+    public class BlogRestClientController : Controller
     {
-        private readonly HttpClient _httpClient;
+        private readonly RestClient _restClient;
 
-        public BlogHttpClientController(HttpClient httpClient)
+        public BlogRestClientController(RestClient restClient)
         {
-            _httpClient = httpClient;
+            _restClient = restClient;
         }
 
         #region Get
@@ -21,15 +22,14 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
             try
             {
                 List<BlogDataModel> lst = new();
-                // From RestAPI 
-                // Blog is the controller name of RestApi
-                HttpResponseMessage response = await _httpClient.GetAsync("/api/Blog");
+                //From RestAPI 
+                //Blog is controller name of RestApi
+                RestRequest restRequest = new RestRequest(resource: "/api/Blog", Method.Get);
+                var response = await _restClient.ExecuteAsync(restRequest);
                 if (response.IsSuccessStatusCode)
                 {
-                    string jsonStr = await response.Content.ReadAsStringAsync();
+                    string jsonStr = response.Content!;
                     lst = JsonConvert.DeserializeObject<List<BlogDataModel>>(jsonStr)!;
-
-                    // Order the list by Blog_Date in descending order
                     lst = lst.OrderByDescending(blog => blog.Blog_Id).ToList();
                 }
                 return View(lst);
@@ -41,7 +41,6 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
         }
         #endregion
 
-
         #region Create page
         [HttpGet]
         public IActionResult Create()
@@ -51,19 +50,19 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
         #endregion
 
         #region Save
-        [HttpPost]
         public async Task<IActionResult> Save(BlogDataModel model)
         {
             try
             {
-                string json = JsonConvert.SerializeObject(model);
-                HttpContent httpContent = new StringContent(json, Encoding.UTF8, Application.Json);
-                HttpResponseMessage response = await _httpClient.PostAsync("/api/Blog", httpContent);
+                RestRequest request = new("/api/Blog", Method.Post);
+                request.AddJsonBody(model);
+                var response = await _restClient.ExecuteAsync(request);
+
                 if (response.IsSuccessStatusCode)
                 {
-                    string message = await response.Content.ReadAsStringAsync();
-                    await Console.Out.WriteLineAsync(message);
+                    await Console.Out.WriteLineAsync(response.Content!);
                 }
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -79,13 +78,21 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
         {
             try
             {
-                var item = new BlogDataModel();
-                HttpResponseMessage response = await _httpClient.GetAsync($"/api/Blog/{id}");
+                BlogDataModel item = new BlogDataModel();
+                RestRequest request = new RestRequest($"/api/Blog/{id}", Method.Get);
+                var response = await _restClient.ExecuteAsync(request);
+
                 if (response.IsSuccessStatusCode)
                 {
-                    string jsonStr = await response.Content.ReadAsStringAsync();
-                    item = JsonConvert.DeserializeObject<BlogDataModel>(jsonStr);
+                    string jsonStr = response.Content!;
+                     item = JsonConvert.DeserializeObject<BlogDataModel>(jsonStr)!;
                 }
+                else
+                {
+                    Console.WriteLine(response.Content);
+                }
+
+
                 return View(item);
             }
             catch (Exception ex)
@@ -101,34 +108,41 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
         {
             try
             {
-                string json = JsonConvert.SerializeObject(model);
-                HttpContent httpContent = new StringContent(json, Encoding.UTF8, Application.Json);
-                HttpResponseMessage response = await _httpClient.PutAsync($"/api/Blog/{id}", httpContent);
+                RestRequest request = new RestRequest($"/api/Blog/{id}", Method.Put);
+                request.AddJsonBody(model);
+               // request.AddBody(model);
+                var response = await _restClient.ExecuteAsync(request);
+                return RedirectToAction("Index");
                 if (response.IsSuccessStatusCode)
                 {
-                    string message = await response.Content.ReadAsStringAsync();
-                    await Console.Out.WriteLineAsync(message);
+                    await Console.Out.WriteLineAsync(response.Content!);
                 }
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return View("Error");
             }
         }
         #endregion
 
         #region Delete
         [HttpGet]
+        
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                HttpResponseMessage response = await _httpClient.DeleteAsync($"/api/Blog/{id}");
+                RestRequest request = new RestRequest($"/api/Blog/{id}", Method.Delete);
 
+                var response = await _restClient.ExecuteAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine(await response.Content.ReadAsStringAsync());
+                    TempData["Message"] = "Blog post deleted successfully.";
+                    // Add some debugging output
+                    Console.WriteLine("Message set successfully");
                 }
 
                 return RedirectToAction("Index");
@@ -138,6 +152,8 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        #endregion
+
     }
+    #endregion
+
 }
