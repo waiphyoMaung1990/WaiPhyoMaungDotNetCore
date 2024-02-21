@@ -100,7 +100,7 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
             BlogResponseModel model = new BlogResponseModel()
             {
                 Data = lst,
-                PageSetting = new PageSettingModel(pageNo, pageSize, pageCount, rowCount)//1,10,11,101
+                PageSetting = new PageSettingModel(pageNo, pageSize, pageCount, rowCount,"/Blog/List")//1,10,11,101
             };
 
             return View("BlogList", model); // Pass the model to the view
