@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Contracts;
 
 namespace WaiPhyoMaungDontNetCore.MvcApp.Models
 {
@@ -52,6 +53,7 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Models
         public List<int> Data { get; set; }
 
     }
-    #endregion
+
+#endregion
 
 }
