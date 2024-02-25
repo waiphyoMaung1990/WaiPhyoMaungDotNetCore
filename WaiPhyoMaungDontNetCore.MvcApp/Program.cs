@@ -1,9 +1,26 @@
 using Microsoft.EntityFrameworkCore;
 using Refit;
 using RestSharp;
+using Serilog;
+using Serilog.Sinks.MSSqlServer;
 using WaiPhyoMaungDontNetCore.MvcApp;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
+// Configure Serilog for logging
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/myapp.log", rollingInterval: RollingInterval.Hour)
+    .WriteTo.MSSqlServer(
+        connectionString: "Server=.;Database=WaiPhyoMaung_A;User Id=sa;Password=091537;TrustServerCertificate=true;",
+        sinkOptions: new MSSqlServerSinkOptions { TableName = "Tbl_Log", AutoCreateSqlTable = true })
+    .CreateLogger();
+
+
+//for log
+//builder.Host.UseSerilog();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -32,7 +49,7 @@ builder.Services.AddScoped(IServiceProvider =>
 #region for RestClient
 builder.Services.AddScoped(IServiceProvider =>
 {
-    RestClient restClient = new RestClient(builder.Configuration.GetSection(key: "ApiUrl").Value!);   
+    RestClient restClient = new RestClient(builder.Configuration.GetSection(key: "ApiUrl").Value!);
     return restClient;
 });
 #endregion

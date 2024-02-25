@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WaiPhyoMaungDontNetCore.MvcApp.Models;
-using System.Collections.Generic; // Add this namespace for List<T>
+using System.Collections.Generic;
+using Serilog; // Add this namespace for List<T>
 
 namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
 {
@@ -158,7 +159,10 @@ namespace WaiPhyoMaungDontNetCore.MvcApp.Controllers
             item.Blog_Author = requestModel.Blog_Author;
             item.Blog_Content = requestModel.Blog_Content;
 
-            await _appdbcontext.SaveChangesAsync();
+           int result= await _appdbcontext.SaveChangesAsync();
+            string message = result > 0 ? "Success" : "Fail";
+            Log.Information(message);
+            
 
             return RedirectToAction("Index");
         }

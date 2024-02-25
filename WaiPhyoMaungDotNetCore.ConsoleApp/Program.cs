@@ -52,12 +52,53 @@
 //    Console.WriteLine("Content=>" + dr["Blog_Content"]);
 //    Console.WriteLine("--------------------------------------");
 //}
+using Serilog;
+using Serilog.Sinks.MSSqlServer;
 using WaiphyomaungDotNetCore.ConsoleApp.AdoDotNetExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.DapperExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.EFCoreExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.HttpClientExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.RefitExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.RestClientExamples;
+
+#region Log
+//https://github.com/serilog/serilog/wiki/Getting-Started
+//https://github.com/serilog/serilog/wiki/Provided-Sinks
+
+Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Error() //change in level
+            .WriteTo.Console()
+            .WriteTo.File("logs/myapp.log", rollingInterval: RollingInterval.Hour)
+
+#region for Dblog //Serilog.Sinks.MSSqlServer Nugetpackage
+             .WriteTo
+    .MSSqlServer(
+        connectionString: "Server=.;Database=WaiPhyoMaung_A;User Id=sa;Password=091537;TrustServerCertificate = true;",
+        sinkOptions: new MSSqlServerSinkOptions { TableName = "Tbl_Log", AutoCreateSqlTable = true, })
+#endregion
+
+            .CreateLogger();
+Log.Information("Hello, world!");
+
+int a = 10, b = 0;
+try
+{
+    Log.Debug("Dividing {A} by {B}", a, b);
+    Console.WriteLine(a / b);
+}
+catch (Exception ex)
+{
+    Log.Error(ex, "Something went wrong");
+}
+finally
+{
+    await Log.CloseAndFlushAsync();
+}
+#endregion
+
+
+
+
 
 //AdoDotNetExample adoDotnewexample=new AdoDotNetExample();
 //adoDotnewexample.Run();
@@ -78,10 +119,10 @@ using WaiphyomaungDotNetCore.ConsoleApp.RestClientExamples;
 //await restClientExample.Run();
 //Console.ReadKey();
 
-Console.WriteLine("Please wait for api...");
-Console.ReadKey();
+//Console.WriteLine("Please wait for api...");
+//Console.ReadKey();
 
-RefitExample refitExample=new RefitExample();
-await refitExample.Run();
+//RefitExample refitExample=new RefitExample();
+//await refitExample.Run();
 
-Console.ReadLine();
+//Console.ReadLine();

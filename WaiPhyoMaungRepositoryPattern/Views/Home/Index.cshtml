@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WaiPhyoMaungRepositoryPattern.Models.Employee>
+
+<h2>Employee List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.Name</td>
+                <td>@employee.city</td>
+                <td>
+                   
+                    <a asp-action="Edit" asp-route-id="@employee.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@employee.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
