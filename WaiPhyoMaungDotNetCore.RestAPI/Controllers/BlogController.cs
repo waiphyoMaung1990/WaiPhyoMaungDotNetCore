@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using WaiphyomaungDotnetCore.RestAPI.Models;
 
 namespace WaiphyomaungDotnetCore.RestAPI.Controllers
@@ -11,10 +12,18 @@ namespace WaiphyomaungDotnetCore.RestAPI.Controllers
     {
         AppDbContext appDbContext = new AppDbContext();
 
+        private readonly ILogger<BlogController> _logger;
+
+        public BlogController(ILogger<BlogController> logger)
+        {
+            _logger = logger;
+        }
 
         [HttpGet]
         public IActionResult GetBlogs()
         {
+            _logger.LogInformation("Success");
+           // Log.Information("SuccessData");
 
             var lst = appDbContext.Blogs.ToList();
             return Ok(lst);

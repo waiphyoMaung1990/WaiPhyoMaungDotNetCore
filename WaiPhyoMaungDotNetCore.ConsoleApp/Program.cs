@@ -61,7 +61,7 @@ using WaiphyomaungDotNetCore.ConsoleApp.HttpClientExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.RefitExamples;
 using WaiphyomaungDotNetCore.ConsoleApp.RestClientExamples;
 
-#region Log
+#region  Serial Log
 //https://github.com/serilog/serilog/wiki/Getting-Started
 //https://github.com/serilog/serilog/wiki/Provided-Sinks
 
