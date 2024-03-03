@@ -19,9 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaiPhyoMaungDotNetCore.Chat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaiPhyoMaungRepositoryPattern", "WaiPhyoMaungRepositoryPattern\WaiPhyoMaungRepositoryPattern.csproj", "{1E1F89C7-9345-4DC1-A9C0-15A3440B646C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiPhyoMaungLog4NetExample", "WaiPhyoMaungLog4NetExample\WaiPhyoMaungLog4NetExample.csproj", "{4FA1F71C-BAA3-4B2E-B819-66156326A593}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaiPhyoMaungLog4NetExample", "WaiPhyoMaungLog4NetExample\WaiPhyoMaungLog4NetExample.csproj", "{4FA1F71C-BAA3-4B2E-B819-66156326A593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiPhyoMaungDotNetCore.NLog", "WaiPhyoMaungDotNetCore.NLog\WaiPhyoMaungDotNetCore.NLog.csproj", "{B09CF684-C991-45B1-902E-335DEF292568}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaiPhyoMaungDotNetCore.NLog", "WaiPhyoMaungDotNetCore.NLog\WaiPhyoMaungDotNetCore.NLog.csproj", "{B09CF684-C991-45B1-902E-335DEF292568}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaiPhyoMaungDotNetCore.RealTimeChartUsingSignalR", "WaiPhyoMaungDotNetCore.RealTimeChartUsingSignalR\WaiPhyoMaungDotNetCore.RealTimeChartUsingSignalR.csproj", "{3EC4E5D9-6ED2-4836-AAF6-C073FEB6C1A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiphyomaungDotNetCore.ThemesApp", "WaiphyomaungDotNetCore.ThemesApp\WaiphyomaungDotNetCore.ThemesApp.csproj", "{8B33D3C8-3556-4CF9-A8AD-380E82E13381}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{B09CF684-C991-45B1-902E-335DEF292568}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B09CF684-C991-45B1-902E-335DEF292568}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B09CF684-C991-45B1-902E-335DEF292568}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EC4E5D9-6ED2-4836-AAF6-C073FEB6C1A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EC4E5D9-6ED2-4836-AAF6-C073FEB6C1A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EC4E5D9-6ED2-4836-AAF6-C073FEB6C1A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EC4E5D9-6ED2-4836-AAF6-C073FEB6C1A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B33D3C8-3556-4CF9-A8AD-380E82E13381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B33D3C8-3556-4CF9-A8AD-380E82E13381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B33D3C8-3556-4CF9-A8AD-380E82E13381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B33D3C8-3556-4CF9-A8AD-380E82E13381}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
